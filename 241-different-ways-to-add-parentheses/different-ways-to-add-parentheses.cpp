@@ -10,13 +10,8 @@ int fun(int x,int y,char ch){
     vector<int> diffWaysToCompute(string ex) {
        vector<int> ans;
        int n=ex.length();
-    //    int temp=0;
-    //    if(ex.length()==1){
-    //        ans.push_back()
-    //    } 
         for(int i=0;i<n;i++){
             if(ex[i]=='+' || ex[i]=='-' ||ex[i]=='*'){
-                cout<<ex.substr(0,i) <<" "<<ex.substr(i+1,n-i);
                 vector<int> left=diffWaysToCompute(ex.substr(0,i));
                 vector<int> right=diffWaysToCompute(ex.substr(i+1,n-i));
             for(auto x:left){
