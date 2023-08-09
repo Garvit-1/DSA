@@ -20,7 +20,7 @@ public:
                ans = m;
                j = m-1;
            }
-           else i = m+1;
+           else i = m+1; // if not i will expand my range
        }
        return ans;
     }
