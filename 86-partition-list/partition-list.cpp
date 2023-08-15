@@ -11,6 +11,8 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
+        
+        //optimal
         ListNode* curr1=head;
         ListNode* left=new ListNode(0);
         ListNode* l=left;
