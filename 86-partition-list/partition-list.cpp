@@ -12,24 +12,26 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
         ListNode* curr1=head;
+        ListNode* left=new ListNode(0);
+        ListNode* l=left;
+
+        ListNode* right=new ListNode(0);
+        ListNode* r=right;
+
         vector<int> v;
-        while(curr1 ){
-        v.push_back(curr1->val);
+        while(curr1){
+        if(curr1->val<x){
+        left->next=curr1;
+        left=left->next;
+        }
+        else{
+        right->next=curr1;
+        right=right->next;
+        }
         curr1=curr1->next;
         }
-        curr1=head;
-        for(int i=0;i<v.size();i++){
-            if(v[i]<x){
-                curr1->val=v[i];
-                curr1=curr1->next;
-            }
-        }
-        for(int i=0;i<v.size();i++){
-            if(v[i]>=x){
-                curr1->val=v[i];
-                curr1=curr1->next;
-            }
-        }
-        return head;
+        left->next=r->next;
+        right->next=NULL;        
+        return l->next;
     }
 };
