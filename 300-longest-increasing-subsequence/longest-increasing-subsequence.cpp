@@ -1,28 +1,11 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0) return 0;
-
-        // Initialize a DP array to store the lengths of LIS ending at each index
-        vector<int> dp(n, 1);
-
-        // Traverse through the array and update dp[i] for each element
-        for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < i; ++j) {
-                if (nums[i] > nums[j]) {
-                    dp[i] = max(dp[i], dp[j] + 1);
-                }
-            }
-        }
-
-        // Find the maximum value in dp, which represents the length of the overall LIS
-        int max_len = 1;
-        for (int i = 0; i < n; ++i) {
-            max_len = max(max_len, dp[i]);
-        }
-
-        return max_len;
+        vector<int>dp(nums.size(),1);
+        for(int i = 0; i < nums.size(); i++)
+            for(int j = i -1 ; j >= 0; j--)
+               if(nums[i] > nums[j]) dp[i] = max(dp[i], 1 + dp[j]);
+        return *max_element(dp.begin(),dp.end());
     }
 };
 
