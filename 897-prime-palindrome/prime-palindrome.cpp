@@ -17,22 +17,19 @@ public:
         return true;
 
     }
-    int primePalindrome(int n) {
+     int primePalindrome(int n) {
         if(n==1 || n==2) return 2;
-         if (99899*1e2 <= n && n <= 1e8)
-        return 100030001;
-
-        for (long long i = n; i < 1e8; i++) {
-            if (isPrime(i)) {
-                if (isPalin(i)) {
-                    return i;
-                }
-            }
+        int i;
+        if(n%2 == 0) i = n+1;
+        else i=n;
+        while(true){
+            if(isPalin(i) && isPrime(i)) return i;
+            i += 2;     
+            if(i > 1e7 && i < 1e8) i = 1e8 + 1;
+            if(i > 1e5 && i < 1e6) i = 1e6 + 1;
+            if(i > 1e3 && i < 1e4) i = 1e4 + 1;
+            if(i > 11 && i < 100) i = 101;
         }
-        return 0;
-        // while(true){
-        //     if(isPrime(n) && isPalin(n)) return n;
-        //     n++;
-        // }
+        return -1;
     }
 };
