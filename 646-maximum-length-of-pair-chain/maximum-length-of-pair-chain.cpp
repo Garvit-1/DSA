@@ -6,7 +6,7 @@ static bool comp(vector<int>& a,vector<int>& b){
     int findLongestChain(vector<vector<int>>& pairs) {
         sort(pairs.begin(),pairs.end(),comp);
         int ans=0;
-        for(auto a:pairs) cout<<a[0]<<" "<<a[1];
+        // for(auto a:pairs) cout<<a[0]<<" "<<a[1];
         for(int i=0;i<pairs.size();i++){
             int cure=pairs[i][1];
             int cur=1;
