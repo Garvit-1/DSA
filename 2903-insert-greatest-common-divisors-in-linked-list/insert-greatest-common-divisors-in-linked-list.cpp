@@ -10,21 +10,23 @@
  */
 class Solution {
 public:
-// int gcd(int a,int b){
-//     for(int i=min(a,b);i>=1;i--){
-//         if(a%i==0 && b%i==0) return i; 
-//     }
-//     return 1;
-// }
     ListNode* insertGreatestCommonDivisors(ListNode* head) {
-        ListNode* curr=head;
-        while(curr->next){
-            int a=__gcd(curr->val,curr->next->val);
-            ListNode* temp=new ListNode(a);
-            temp->next=curr->next;
-            curr->next=temp;
-            curr=temp->next;
-        }
-        return head;
+    ListNode* prev,*nxt;
+    prev=head;
+    nxt=prev->next;
+    if(nxt==NULL) return head;
+
+
+    while(nxt!=NULL){
+        int x=gcd(prev->val,nxt->val);
+        prev->next=new ListNode(x);
+        prev=prev->next;
+        prev->next=nxt;
+        prev=nxt;
+        nxt=nxt->next;
+    }
+
+    return head;
+
     }
 };
