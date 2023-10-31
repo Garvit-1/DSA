@@ -1,37 +1,23 @@
 class Solution {
 public:
-    vector<string> letterCombinations(string digits) {
-        vector<string> res;
-        
-        if (digits.empty()) {
-            return res;
+    vector<string> ans;
+    void help(vector<string>& chars,int i,string digits,string curr){
+        if(i==digits.size()){
+        ans.push_back(curr);
+        return;
+        } 
+        int c=digits[i]-'0';
+        for(int j=0;j<chars[c-2].size();j++){
+        help(chars,i+1,digits,curr+chars[c-2][j]);
         }
-        
-        unordered_map<char, string> digitToLetters = {
-            {'2', "abc"},
-            {'3', "def"},
-            {'4', "ghi"},
-            {'5', "jkl"},
-            {'6', "mno"},
-            {'7', "pqrs"},
-            {'8', "tuv"},
-            {'9', "wxyz"}
-        };
-        
-        backtrack(digits, 0, "", res, digitToLetters);
-        
-        return res;        
-    }
 
-    void backtrack(const string& digits, int idx, string comb, vector<string>& res, const unordered_map<char, string>& digitToLetters) {
-        if (idx == digits.length()) {
-            res.push_back(comb);
-            return;
-        }
-        
-        string letters = digitToLetters.at(digits[idx]);
-        for (char letter : letters) {
-            backtrack(digits, idx + 1, comb + letter, res, digitToLetters);
-        }
-    }    
+    }
+    vector<string> letterCombinations(string digits) {
+        if(digits.size()==0) return ans;
+        vector<string> chars={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        help(chars,0,digits,"");
+
+        return ans;
+
+    }
 };
