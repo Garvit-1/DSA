@@ -8,7 +8,9 @@ public:
         } 
         int c=digits[i]-'0';
         for(int j=0;j<chars[c-2].size();j++){
-        help(chars,i+1,digits,curr+chars[c-2][j]);
+        curr+=chars[c-2][j];
+        help(chars,i+1,digits,curr);
+        curr.pop_back();
         }
 
     }
