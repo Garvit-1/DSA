@@ -1,29 +1,23 @@
 class Solution {
 public:
-    bool isPathCrossing(string path) {
-        vector<pair<int,int>> vis;
-        int x=0,y=0;
-        vis.push_back({0,0});
-        for(auto a:path){
-            switch(a){
-                case 'N':
-                    y++;
-                    break;
-                case 'S':
-                    y--;
-                    break;
-                case 'E':
-                    x--;
-                    break;
-                case 'W':
-                    x++;
-                    break;
-            } 
-            for(auto a:vis){
-                if(a.first==x && a.second==y) return true;
+    bool isPathCrossing(string movementPath) {
+        unordered_set<string> visitedPoints;
+        int currentX = 0, currentY = 0;
+        visitedPoints.insert(to_string(currentX) + "," + to_string(currentY));
+        
+        for (auto direction : movementPath) {
+            if (direction == 'N') ++currentY;
+            else if (direction == 'S') --currentY;
+            else if (direction == 'E') ++currentX;
+            else --currentX;
+            
+            if (visitedPoints.count(to_string(currentX) + "," + to_string(currentY))) {
+                return true;
             }
-            vis.push_back({x,y});
+            
+            visitedPoints.insert(to_string(currentX) + "," + to_string(currentY));
         }
+        
         return false;
     }
 };
