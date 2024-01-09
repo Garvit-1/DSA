@@ -11,25 +11,24 @@
  */
 class Solution {
 public:
-void help(TreeNode* root,vector<int> &v){
-    // if(!root->left && !root->right) v.push_back(root->val);
+    void inorder(TreeNode* root,vector<int>& s){
+        if(!root) return;
 
-    stack<TreeNode*> st;
-    st.push(root);
-    while(!st.empty()){
-        TreeNode* cur=st.top();
-        st.pop();
-        if(!cur->left && !cur->right) v.push_back(cur->val);
-        if(cur->left) st.push(cur->left);
-        if(cur->right) st.push(cur->right);
-    }
-    
-}
+        inorder(root->left,s);
+
+        if(!root->left && !root->right)
+
+        s.push_back(root->val);
+
+        inorder(root->right,s);
+        }
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        vector<int> v1,v2;
-        help(root1,v1);
-        help(root2,v2);
-        if(v1==v2) return true;
+        vector<int> s1,s2;
+        inorder(root1,s1);
+        inorder(root2,s2);
+        // cout<<s1<<" "<<s2;
+
+        if(s1==s2) return true;
         return false;
     }
 };
