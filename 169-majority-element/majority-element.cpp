@@ -1,30 +1,15 @@
 class Solution {
 public:
-   int majorityElement(vector<int> v) {
-       //Moore's Voting Algo
-    //size of the given array:
-    int n = v.size();
-    int cnt = 0; // count
-    int el; // Element
-
-    //applying the algorithm:
-    for (int i = 0; i < n; i++) {
-        if (cnt == 0) {
-            cnt = 1;
-            el = v[i];
+    int majorityElement(vector<int>& nums) {
+        int candidate=0;
+        int c=0;
+        for(int i=0;i<nums.size();i++){
+            if(c==0) candidate=nums[i];
+            if(nums[i]==candidate) c++;
+            else c--;
         }
-        else if (el == v[i]) cnt++;
-        else cnt--;
-    }
 
-    //checking if the stored element
-    // is the majority element:
-    int cnt1 = 0;
-    for (int i = 0; i < n; i++) {
-        if (v[i] == el) cnt1++;
-    }
-
-    if (cnt1 > (n / 2)) return el;
-    return -1;
+        return candidate;
+        
     }
 };
