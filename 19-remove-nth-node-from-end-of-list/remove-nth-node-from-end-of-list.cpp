@@ -17,14 +17,13 @@ public:
             curr=curr->next;
         }
         if(!curr) return head->next;
-
         while(curr->next){
             curr=curr->next;
             curr1=curr1->next;
         }
-        if(curr1 && curr1->next)
+        auto del=curr1->next;
         curr1->next=curr1->next->next;
-
+        delete(del);
         return head;
     }
 };
