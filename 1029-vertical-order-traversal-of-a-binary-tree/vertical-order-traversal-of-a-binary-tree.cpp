@@ -11,32 +11,31 @@
  */
 class Solution {
 public:
-
-    map<int,priority_queue<pair<int,int>>> mp;
-    void solve(TreeNode* root, int d, int l) {
-    if (!root) return;
-
-    if (root->left) solve(root->left, d - 1, l + 1);
-        mp[d].push({l,root->val});
-    if (root->right) solve(root->right, d + 1, l + 1);
-}
-
+    void help(TreeNode* root,int h,int c,map<int,vector<pair<int,int>>>& mp){
+        if(!root) return;
+        mp[c].push_back({h,root->val});
+        help(root->left,h+1,c-1,mp);
+        help(root->right,h+1,c+1,mp);
+    }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        vector<vector<int>> ans;
-        mp.clear(); // Clear the map before using it
-        if (!root) return ans;
 
-        solve(root, 0, 1);
-        for (auto a : mp) {
-            vector<int> t;
-            while(!a.second.empty()){
-            int x=a.second.top().second;
-            a.second.pop();
-            t.push_back(x);
-            } 
-            reverse(t.begin(),t.end());
-            ans.push_back(t);
+        vector<vector<int>> ans;
+        map<int,vector<pair<int,int>>> mp;
+        help(root,0,0,mp);
+
+        for(auto a:mp){
+            sort(a.second.begin(),a.second.end());
+            vector<int> c;
+            for(auto b:a.second){
+                c.push_back(b.second);
+            }
+            ans.push_back(c);
+            c.clear();
         }
-        return ans;        
+
+        return ans;
+
+
+        
     }
 };
