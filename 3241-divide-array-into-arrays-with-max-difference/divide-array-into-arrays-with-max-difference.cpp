@@ -3,6 +3,9 @@ public:
     vector<vector<int>> divideArray(vector<int>& nums, int k) {
         sort(nums.begin(),nums.end());
         vector<vector<int>> ans;
+        int size = nums.size();
+        if (size % 3 != 0)
+            return vector<vector<int>>();
         int i=0;
         while(i!=nums.size()){
             vector<int> temp;
