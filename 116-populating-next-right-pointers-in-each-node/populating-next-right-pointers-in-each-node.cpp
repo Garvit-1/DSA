@@ -19,35 +19,27 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        vector<vector<Node*>> ans;
-        queue<Node*>q;
-        if(root==NULL){
-            return root;
-        }
+        if(!root) return root;
+        queue<Node*> q;
         q.push(root);
         while(!q.empty()){
-            int size = q.size();
-            vector<Node*> level;
-            for(int i=0;i<size;i++){               
-                Node*node=q.front();
+            int n=q.size();
+            vector<Node*> temp;
+            for(int i=0;i<n;i++){
+                Node* cur=q.front();
                 q.pop();
-
-                if(node->left!=NULL){
-                    q.push(node->left);
-                }
-                if(node->right!=NULL){
-                    q.push(node->right);
-                }
-                level.push_back(node);
+                temp.push_back(cur);
+                if(cur->left!=NULL) q.push(cur->left);
+                if(cur->right!=NULL) q.push(cur->right);
             }
-            ans.push_back(level);
-        }
-        for(auto a:ans){
-            for(int i=0;i<a.size()-1;i++){
-                a[i]->next=a[i+1];
+            int i=0;
+            for(i=0;i<n-1;i++){
+                temp[i]->next=temp[i+1];
             }
+            temp[i]->next=NULL;
+            temp.clear();
         }
-        return root;
-
+        
+    return root;
     }
 };
