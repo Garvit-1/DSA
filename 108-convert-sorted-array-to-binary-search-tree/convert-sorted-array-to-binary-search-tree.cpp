@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-TreeNode* help(vector<int> nums,int s,int e){
+    TreeNode* help(vector<int> nums,int s,int e){
     if(s>=e) return NULL;
     int mid=(s+e)/2;
     TreeNode* a=new TreeNode(nums[mid]);
