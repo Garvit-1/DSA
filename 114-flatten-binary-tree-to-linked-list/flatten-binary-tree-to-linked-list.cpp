@@ -12,23 +12,14 @@
 class Solution {
 public:
 
-void pre(TreeNode* root,vector<TreeNode*>& helper){
-    if(!root) return;
-    helper.push_back(root);
-    pre(root->left,helper);
-    pre(root->right,helper);
-}
+TreeNode* prev=NULL;
     void flatten(TreeNode* root) {
-        if(!root) return;
-        vector<TreeNode*> helper;
-        pre(root,helper);
-        int i=0;
-        for(i=0;i<helper.size()-1;i++){
-            helper[i]->left=NULL;
-            helper[i]->right=helper[i+1];
-            
-        }
-        helper[i]->right=NULL;
-        helper[i]->left=NULL;
+        if (root == NULL)
+        return;
+        flatten(root->right);
+        flatten(root->left);
+        root->right = prev;
+        root->left = NULL;
+        prev = root;
     }
 };
