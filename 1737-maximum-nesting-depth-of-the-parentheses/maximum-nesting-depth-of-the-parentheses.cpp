@@ -1,13 +1,13 @@
 class Solution {
 public:
     int maxDepth(string s) {
-        int ans=0,x=0;
-        for(char a:s){
-            if(a=='('){
-                x++;
-            }
-            else if(a==')') x--;
-            ans=max(ans,x);
+        stack<char> st;
+        int ans=0;
+        for(auto a:s){
+            if(a=='(') st.push(a);
+            else if(a==')') st.pop();
+            int z=st.size();
+            ans=max(ans,z);
         }
         return ans;
     }
