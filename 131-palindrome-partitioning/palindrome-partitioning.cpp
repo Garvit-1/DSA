@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool ispalin(const string& s, int i, int j) {
+    bool ispalin(string& s, int i, int j) {
         while (i <= j) {
             if (s[i] != s[j]) return false;
             i++;
@@ -9,7 +9,7 @@ public:
         return true;
     }
 
-    void help(vector<vector<string>>& ans, int l, vector<string>& v, const string& s) {
+    void help(vector<vector<string>>& ans, int l, vector<string>& v, string& s) {
         if (l >= s.length()) {
             ans.push_back(v);
             return;
@@ -25,7 +25,7 @@ public:
         }
     }
 
-    vector<vector<string>> partition(const string& s) {
+    vector<vector<string>> partition(string& s) {
         vector<vector<string>> ans;
         vector<string> v;
         help(ans, 0, v, s);
